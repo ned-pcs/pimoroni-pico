@@ -7,7 +7,9 @@ on:
     types: [created]
 
 env:
-  MICROPYTHON_VERSION: 38e7b842c6bc8122753cbf0845eb141f28fbcb72
+  MICROPYTHON_REPO: peterharperuk/micropython
+  MICROPYTHON_VERSION: bt_beta1_merge
+  WORKSPACE_CACHE_KEY: hack01-workspace-micropython-peterharperuk-bt_beta1_merge
 
 jobs:
   deps:
@@ -19,16 +21,16 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ${{runner.workspace}}
-        key: workspace-micropython-${{env.MICROPYTHON_VERSION}}-with-libs
+        key: ${{env.WORKSPACE_CACHE_KEY}}
         restore-keys: |
-          workspace-micropython-${{env.MICROPYTHON_VERSION}}-with-libs
+          ${{env.WORKSPACE_CACHE_KEY}}
 
     # Check out MicroPython
     - name: Checkout MicroPython
       if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/checkout@v3
       with:
-        repository: micropython/micropython
+        repository: ${{env.MICROPYTHON_REPO}}
         ref: ${{env.MICROPYTHON_VERSION}}
         submodules: false  # MicroPython submodules are hideously broken
         path: micropython
@@ -103,18 +105,18 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /home/runner/.ccache
-        key: ccache-micropython-${{matrix.name}}-${{github.ref}}-${{github.sha}}
+        key: hack-ccache-micropython-${{matrix.name}}-${{github.ref}}-${{github.sha}}
         restore-keys: |
-          ccache-micropython-${{matrix.name}}-${{github.ref}}
-          ccache-micropython-${{matrix.name}}-
+          hack-ccache-micropython-${{matrix.name}}-${{github.ref}}
+          hack-ccache-micropython-${{matrix.name}}-
   
     - name: Workspace Cache
       uses: actions/cache@v3
       with:
         path: ${{runner.workspace}}
-        key: workspace-micropython-${{env.MICROPYTHON_VERSION}}
+        key: ${{env.WORKSPACE_CACHE_KEY}}
         restore-keys: |
-          workspace-micropython-${{env.MICROPYTHON_VERSION}}
+          ${{env.WORKSPACE_CACHE_KEY}}
 
     - name: Install Compiler & CCache
       if: runner.os == 'Linux'
