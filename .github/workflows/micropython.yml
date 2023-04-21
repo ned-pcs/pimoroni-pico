@@ -68,29 +68,8 @@ jobs:
         include:
         - name: pico
           board: PICO
-        - name: picow
-          board: PICO_W
-        - name: tiny2040
-          board: PIMORONI_TINY2040
-        - name: picolipo_4mb
-          board: PIMORONI_PICOLIPO_4MB
-        - name: picolipo_16mb
-          board: PIMORONI_PICOLIPO_16MB
-        - name: tufty2040
-          board: PIMORONI_TUFTY2040
-          local_board_dir: true
-        - name: enviro
-          board: PICO_W_ENVIRO
-          local_board_dir: true
-          patch: true
-        - name: galactic_unicorn
-          board: PICO_W
-        - name: cosmic_unicorn
-          board: PICO_W
-        - name: inky_frame
-          board: PICO_W_INKY
-          local_board_dir: true
-          patch: true
+        - name: interstate75_ulab
+          board: PICO
 
     env:
       # MicroPython version will be contained in github.event.release.tag_name for releases
