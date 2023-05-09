@@ -9,13 +9,13 @@ set(CMAKE_CXX_STANDARD 17)
 
 ## micropython-common with deletions
 # Essential
-# include(pimoroni_i2c/micropython)
-# include(pimoroni_bus/micropython)
+include(pimoroni_i2c/micropython)
+include(pimoroni_bus/micropython)
 
 # Pico Graphics Essential
-# include(hershey_fonts/micropython)
-# include(bitmap_fonts/micropython)
-# include(picographics/micropython)
+include(hershey_fonts/micropython)
+include(bitmap_fonts/micropython)
+include(picographics/micropython)
 
 # Pico Graphics Extra
 # include(jpegdec/micropython)
@@ -55,4 +55,4 @@ enable_ulab()
 
 # C++ Magic Memory
 include(cppmem/micropython)
-copy_module(boot.py)
+# copy_module(boot.py)
